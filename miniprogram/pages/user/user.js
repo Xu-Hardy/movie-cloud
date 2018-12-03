@@ -27,7 +27,6 @@ Page({
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
-      data: {},
       success: res => {
         app.globalData.openid = res.result.openid
         this.getOtherComment()
@@ -48,9 +47,14 @@ Page({
       success: res => {
         console.log("收藏")
         console.log(res.result.data)
-        this.setData({
-          stars: res.result.data
-        })
+        let result = res.result.data
+        if (!result.length) {
+          stars: null
+        } else {
+          this.setData({
+            stars: res.result.data
+          })
+        }
       },
       fail: err => {
         console.error('[云函数] [getStar] 调用失败', err)

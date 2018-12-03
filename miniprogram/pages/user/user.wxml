@@ -11,20 +11,18 @@
 </view>
 
 <view class='login' wx:else>
-  <view class='unstar' wx:if='{{!stars}}'>
-     <image class='unstar-img' src='/images/empty.png'></image> 
-    <view class='unstar-text'>还有没收藏的电影呦！</view>
-  </view>
 
-  <view class='unstar' wx:if='{{!release}}'>
-     <image class='unstar-img' src='/images/empty.png'></image> 
-    <view class='unstar-text'>还没有发布的收藏哟！</view>
-  </view>
-
-<view wx:else>
+    <!-- <view class='unstar' wx:if='{{!stars}}'>
+        <image class='unstar-img' src='/images/empty.png'></image> 
+        <view class='unstar-text'>还有没收藏的电影呦！</view>
+    </view> -->
     <view class='star-title' bindtap='switch'>{{tips}}</view>
-  <scroll-view scroll-y scroll-with-animation enable-back-to-top> 
-    <view class='star-list' wx:for='{{stars}}' wx:key="id" wx:if='{{status === "收藏"}}'>
+      <view class='unstar' wx:if='{{!stars}}' wx:if='{{status === "收藏"}}'>
+          <image class='unstar-img' src='/images/empty.png'></image> 
+          <view class='unstar-text'>还有没收藏的电影呦！</view>
+      </view>
+   <scroll-view scroll-y scroll-with-animation enable-back-to-top > 
+    <view class='star-list' wx:for='{{stars}}' wx:key="id" >
         <view class='star-card'>
           <image class='star-img' src='{{item.movieImage}}'></image>
           <view class='star-tips'>
@@ -43,8 +41,12 @@
         </view>
       </view>
  </scroll-view> 
-  <scroll-view scroll-y scroll-with-animation enable-back-to-top> 
-    <view class='star-list' wx:for='{{release}}' wx:key="id" wx:if='{{status === "发布"}}'>
+  <scroll-view scroll-y scroll-with-animation enable-back-to-top  wx:if='{{status === "发布"}}'> 
+      <view class='unstar' wx:if='{{!release}}'>
+        <image class='unstar-img' src='/images/empty.png'></image> 
+        <view class='unstar-text'>还没有发布的收藏哟！</view>
+      </view>
+    <view class='star-list' wx:for='{{release}}' wx:key="id">
     <view>{{item.movieId}}</view>
       <view class='text-comment' wx:if='{{item.type == "text"}}'>{{item.content}}</view>
       <view class='audio-comment' wx:if='{{item.type == "audio"}}'>
@@ -52,6 +54,5 @@
       </view>
     </view>
  </scroll-view> 
- </view>
   <view class='back' bindtap='backHome'>回到首页</view>
 </view>

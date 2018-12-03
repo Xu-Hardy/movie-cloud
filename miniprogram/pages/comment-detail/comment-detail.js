@@ -25,10 +25,11 @@ Page({
       star: app.globalData.star
     })
     this.getMovieInfo()
-    this.isStar()
+    // this.isStar()
     console.log(this.data.fromWho)
   },
 
+  //下载电影信息
   getMovieInfo() {
       wx.cloud.callFunction({
         name: 'movieInfo',
@@ -64,10 +65,16 @@ Page({
           this.setData({
             hasStar: null
           })
+          wx.showToast({
+            title: '请下拉刷新',
+          })
         } else {
           this.setData({
             hasStar: result[0]
           }) 
+          wx.showToast({
+            title: '请下拉刷新',
+          })
         }
       },
       fail: err => {
