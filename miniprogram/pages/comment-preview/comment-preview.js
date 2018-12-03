@@ -97,6 +97,7 @@ Page({
           content: content,
           type: type,
           user: user,
+          movieId: Number(id)
         },
         success: res => {
           console.log("comment edit: 影评发布成功!")

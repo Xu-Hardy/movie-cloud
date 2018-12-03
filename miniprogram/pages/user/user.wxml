@@ -17,11 +17,12 @@
         <view class='unstar-text'>还有没收藏的电影呦！</view>
     </view> -->
     <view class='star-title' bindtap='switch'>{{tips}}</view>
-      <view class='unstar' wx:if='{{!stars}}' wx:if='{{status === "收藏"}}'>
+
+   <scroll-view scroll-y scroll-with-animation enable-back-to-top  wx:if='{{status === "收藏"}}'> 
+         <view class='unstar' wx:if='{{!stars}}'>
           <image class='unstar-img' src='/images/empty.png'></image> 
           <view class='unstar-text'>还有没收藏的电影呦！</view>
       </view>
-   <scroll-view scroll-y scroll-with-animation enable-back-to-top > 
     <view class='star-list' wx:for='{{stars}}' wx:key="id" >
         <view class='star-card'>
           <image class='star-img' src='{{item.movieImage}}'></image>
