@@ -153,7 +153,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    let id = this.data.movieId
+    this.onGetOpenid()  //获取openid,便于后边获取评论
+    this.getMoviePoster(id) 
+    wx.stopPullDownRefresh()
   },
 
   /**
