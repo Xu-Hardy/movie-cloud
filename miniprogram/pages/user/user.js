@@ -14,6 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.openid)
     // console.log(options)
     this.getStarList()
   },
@@ -36,7 +37,10 @@ Page({
   //加载收藏的影评
   getStarList() {
     wx.cloud.callFunction({
-      name: 'getStar',
+      name: 'getMyStar',
+      data:{
+        user: app.globalData.openid
+      },
       success: res => {
         console.log(res)
         this.setData({
