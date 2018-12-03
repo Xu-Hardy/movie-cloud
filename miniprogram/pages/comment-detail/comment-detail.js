@@ -69,6 +69,8 @@ Page({
           this.setData({
             comment: result[0]
           })
+          console.log("!!!")
+          console.log(result[0])
         }
       },
       fail: err => {
@@ -107,15 +109,22 @@ Page({
   },
 
   refresh() {
+    wx.showLoading({
+      title: '请等待',
+    })
+    this.setData({
+      fromWho: this.data.comment
+    })
+    wx.hideLoading()
     // let data = {
     //   avatar: 
     // }
     // this.setData({
 
     // })
-    wx.showToast({
-      title: '',
-    })
+    // wx.showToast({
+    //   title: '',
+    // })
   },
 
   star() {  
