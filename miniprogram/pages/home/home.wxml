@@ -1,0 +1,33 @@
+<view wx:if="{{!userInfo}}">
+  <view class="unlogin-card">
+    <view class="unlogin-head"></view>
+    <view class="unlogin-info">
+      <view class="unlogin-text">未登录</view>
+      <view class="unlogin-tips">点击微信即可侃侃电影</view>
+    </view>
+  </view>
+   <button open-type="getUserInfo"  bindgetuserinfo="onGetUserInfo" class="unlogin-btn" style="background-image: url({{avatarUrl}})"
+    >微信登录</button>
+</view>
+
+<view wx:else>
+  <navigator class='movie-info'  url='../movie-detail/movie-detail?id={{movieId}}'>
+    <image class='movie-img' src='{{moviePoster.image}}'></image>
+    <view class='home-movie-title'>{{moviePoster.title}}</view>
+  </navigator>
+
+  <view class='movie-fans' wx:if='{{comments}}' bindtap='commentDetail'>
+    <image class='fans-img' src='{{comments.avatar}}'></image>
+    <view class='fans-text'>{{comments.username}}给你推荐了一部电影</view>
+  </view>
+</view>
+<view class='tabbar'>
+  <navigator class='hot' url="../movie-hot/movie-hot">
+      <image class='hot-image' src='/images/hot.png'></image>
+    <view class='hot-text'>热门</view>  
+  </navigator>
+  <navigator class='user' url='../user/user'>
+      <image class='user-icon' src='/images/user.png'></image>
+    <view class='user-text'>我的</view>  
+  </navigator>
+</view>

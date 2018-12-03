@@ -1,0 +1,18 @@
+  <view class='movie-card'>
+    <image class='movie-img' src='{{movieInfo.image}}'></image>
+  </view>
+  <view class='text-card'>
+    <view class='text-tips'>
+      <view class='movie-title'>{{movieInfo.title}}</view>
+
+      <textarea wx:if="{{commentType == 'text'}}" placeholder="输入你的影评内容..." auto-focus='true' show-confirm-bar='true' placeholder-class="text-placeholder" bindinput='onInputComment' maxlength='500'  class='input-text'></textarea>
+
+      <view class='audio-comment' wx:if="{{commentType == 'audio'}}" bindtap='record'>
+        <image class='record-img' src='/images/record.png'></image>
+        <view class='record-text'>{{!!isRecord ? '停止':'录音'}}</view>
+      </view>
+    </view>
+     <!-- <view class='done' bindtap='play' wx:if="{{commentType === 'audio'}}">上传音频</view> 
+    <view class='done' bindtap='addComment' wx:if="{{commentType === 'text'}}">提交评论</view> -->
+    <view class='done' bindtap='done'>完成</view>
+  </view>

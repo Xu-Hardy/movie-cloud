@@ -1,0 +1,74 @@
+.movie-card {
+  width: 100%;
+  display:flex;  
+  justify-content: center
+}
+
+.movie-img {
+  width: 270rpx;
+  height: 400rpx;
+}
+
+.text-card {
+  margin: 30rpx;
+  background: #fff;
+  z-index: -1;
+  position: absolute;
+  top: 100rpx; 
+  bottom: 0;
+  left: 20rpx;
+  right: 20rpx;
+}
+
+.text-tips {
+  margin-top: 300rpx;
+}
+
+.movie-title {
+  padding: 50rpx;
+  text-align: center;
+  font-size: 35rpx;
+  line-height: 49rpx;
+  font-weight: bold;
+}
+
+.bar {
+  position: fixed;
+  bottom: 150rpx;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  font-size: 40rpx;
+  line-height: 100rpx;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+}
+
+.star-comment,
+.write-comment {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx groove moccasin;
+  margin: 0 80rpx;
+  border-radius: 13rpx;
+  background: lightblue
+}
+
+.star-comment {
+  margin-right: 40rpx;
+}
+
+.comment-img {
+  width: 40rpx;
+  height:40rpx;
+}
+
+.comment-text {
+  margin-left: 10rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #34373d;
+}

@@ -1,0 +1,21 @@
+  <view class='movie-card'>
+    <image class='movie-img' src='{{movieDetail.image}}'></image>
+  </view>
+  <view class='text-card'>
+    <view class='text-tips'>
+      <view class='movie-title'>{{movieDetail.title}}</view>
+      <view class='movie-description'>{{movieDetail.description}}</view>
+    </view>
+
+
+    <view class='options'>
+      <navigator class='check-comment' url='../comment-list/comment-list?id={{movieDetail.id}}'>
+        <image class='comment-img' src='/images/view.png'></image>
+        <view class='comment-text'>查看影评</view>
+      </navigator>
+      <view class='add-comment' bindtap='addComment'>
+        <image class='comment-img' src='/images/add-comment.png'></image>
+        <view class='comment-text'>添加评论</view>
+      </view>
+    </view>
+  </view>

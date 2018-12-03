@@ -1,0 +1,81 @@
+page {
+  background: linen
+}
+
+.movie-info {
+  margin: 0 100rpx 20rpx;
+}
+
+.movie-img {
+  width:  570rpx;
+  height: 800rpx;  
+}
+
+ .home-movie-title {
+  margin-top: 30rpx;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  font-weight: bold;
+  text-align: center;
+} 
+
+.movie-fans {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+}
+
+.fans-img {
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.fans-text {
+  margin-left: 30rpx;
+  color: #34373d;
+  font-size: 40rpx;
+  opacity: 0.8;
+}
+
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+.hot-text,
+.user-text {
+  line-height: 100rpx;
+  text-align: center;
+  margin-left: 20rpx;
+}
+
+.hot-image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.user-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.hot,
+.user {
+  height: 100rpx;
+  flex: 1;
+  display: flex;
+  padding: 0 10%;
+}
+
+.hot {
+  background: rgba(245, 224, 105, 0.6);
+}
+
+.user {
+   background: #F5E069;
+}

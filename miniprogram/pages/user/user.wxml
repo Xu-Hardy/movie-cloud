@@ -1,0 +1,57 @@
+<view wx:if="{{!userInfo}}">
+  <view class="unlogin-card">
+    <view class="unlogin-head"></view>
+    <view class="unlogin-info">
+      <view class="unlogin-text">未登录</view>
+      <view class="unlogin-tips">点击微信即可侃侃电影</view>
+    </view>
+  </view>
+   <button open-type="getUserInfo"  bindgetuserinfo="onGetUserInfo" class="unlogin-btn" style="background-image: url({{avatarUrl}})"
+    >微信登录</button>
+</view>
+
+<view class='login' wx:else>
+  <view class='unstar' wx:if='{{!stars}}'>
+     <image class='unstar-img' src='/images/empty.png'></image> 
+    <view class='unstar-text'>还有没收藏的电影呦！</view>
+  </view>
+  <!-- <view wx:else> -->
+  <!-- <view  class='has-comment' wx:for='{{stars}}' >
+   <view class='info'>
+    <image class='image' src='{{item.starAvatar}}'></image>
+    <view class='title'>{{item.fromWho}}的影评</view>
+  </view>
+
+  <view class='comment'>
+    <view class='text-comment' wx:if='{{item.type == "text"}}'>{{item.content}}</view>
+    <view class='audio-comment' wx:if='{{item.type == "audio"}}'>
+      <image class='play-audio' data-src='{{item.content}}' src='/images/play.png' bindtap='playAudio'></image>
+    </view>
+  </view> 
+  </view>
+</view> -->
+<view wx:else>
+    <view class='star-title'>我收藏的影评</view>
+  <scroll-view scroll-y scroll-with-animation enable-back-to-top> 
+    <view class='star-list' wx:for='{{stars}}' wx:key="id">
+        <view class='star-card'>
+          <image class='star-img' src='{{item.movieImage}}'></image>
+          <view class='star-tips'>
+            <view class='star-movie-title'>{{item.movieTitle}}</view>
+              <view class='comment'>
+                <view class='text-comment' wx:if='{{item.type == "text"}}'>{{item.content}}</view>
+                <view class='audio-comment' wx:if='{{item.type == "audio"}}'>
+                  <image class='play-audio' data-src='{{item.content}}' src='/images/play.png' bindtap='playAudio'></image>
+                </view>
+              </view> 
+              <view class='info'>
+                <image class='image' src='{{item.starAvatar}}'></image>
+                <view class='title'>{{item.fromWho}}</view>
+              </view>
+          </view>
+        </view>
+      </view>
+ </scroll-view> 
+ </view>
+  <view class='back' bindtap='backHome'>回到首页</view>
+</view>

@@ -1,0 +1,38 @@
+page {
+  background: #f9f9f9;
+}
+
+.movie-card {
+  margin: 50rpx;
+  display: flex;
+  align-items: center;
+  height: 400rpx; 
+  background: #fff;
+  box-shadow: 2rpx 13rpx 0 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+}
+
+.movie-img {
+  width: 270rpx;
+  height: 400rpx;
+  flex-shrink: 0;
+  border-radius: 13rpx;
+}
+
+.movie-tips {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.hot-movie-title {
+  font-size: 35rpx;
+  line-height: 49rpx;
+  font-weight: bold;
+}
+
+.movie-type {
+  margin-top: 50rpx;
+  font-size: 25rpx;
+  line-height: 35rpx;
+  color: #34373d;
+}

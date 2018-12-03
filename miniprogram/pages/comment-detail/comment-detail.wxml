@@ -1,0 +1,27 @@
+<view class='movie-card'>
+    <image class='movie-img' src='{{movieDetail.image}}'></image>
+  </view>
+  <view class='text-card'>
+    <view class='text-tips'>
+      <view class='movie-title'>{{movieDetail.title}}</view>
+      <view class='info'>
+        <image class='image' src='{{fromWho.avatar}}'></image>
+        <view class='title'>{{fromWho.username}}的影评</view>
+      </view>
+      <view class='comment'>{{fromWho.content}}</view>
+    </view>
+
+
+<view class='bar'>
+  <view class='star-comment' bindtap='star'>
+     <image class='comment-img' src='/images/unstar.png' wx:if='{{!star}}'></image> 
+     <image class='comment-img' src='/images/star.png' wx:if='{{star}}'></image> 
+     <view class='comment-text' wx:if='{{!star}}'>收藏影评</view>
+     <view class='comment-text' wx:if='{{star}}'>已收藏</view>
+  </view>
+  <view class='write-comment' bindtap='addComment'>
+    <image class='comment-img' src='/images/write.png'></image>
+    <view class='comment-text'>写影评</view>
+  </view>
+</view>
+  </view>

@@ -1,0 +1,91 @@
+page {
+  background: #f9f9f9;
+}
+
+.movie-card {
+  width: 100%;
+  display:flex;  
+  justify-content: center
+}
+
+.movie-img {
+  width: 270rpx;
+  height: 400rpx;
+}
+
+.text-card {
+  margin: 30rpx;
+  background: #fff;
+  z-index: -1;
+  position: absolute;
+  top: 100rpx; 
+  bottom: 0;
+  left: 20rpx;
+  right: 20rpx;
+}
+
+.text-tips {
+  margin-top: 300rpx;
+}
+
+.movie-title {
+  padding: 50rpx;
+  text-align: center;
+  font-size: 35rpx;
+  line-height: 49rpx;
+  font-weight: bold;
+}
+
+.movie-description {
+  padding: 50rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #34373d;
+  height: 350rpx;
+}
+
+.done {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  background: moccasin;
+  font-size: 40rpx;
+  line-height: 100rpx;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input-text {
+  width: 100%;
+  word-wrap: break-word;
+  min-height: 300rpx;
+  font-size: 32rpx;
+  line-height: 45rpx;
+}
+
+.audio-comment {
+  display: flex;
+  background: greenyellow;
+  height: 100rpx;
+  width: 200rpx;
+  align-items: center;
+  border-radius: 13rpx;
+  margin:20px auto;
+  justify-content: center;
+}
+
+.record-text {
+  font-size: 30rpx;
+  line-height: 100rpx;
+  color: #34373d;
+  font-weight: bold;
+  flex: 1;
+}
+
+.record-img {
+  width: 80rpx;
+  height: 80rpx;
+  flex: 1;
+}

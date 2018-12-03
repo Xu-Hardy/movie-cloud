@@ -1,0 +1,17 @@
+<view class='unstar' wx:if='{{!comments}}'>
+     <image class='unstar-img' src='/images/empty.png'></image> 
+    <view class='unstar-text'>还有没有人评论呦！</view>
+</view>
+
+<view wx:if='{{comments}}' class='has-comment'  wx:for='{{comments}}'>
+   <view class='info'>
+    <image class='image' src='{{item.avatar}}'></image>
+    <view class='title'>{{item.username}}的影评</view>
+  </view>
+  <view class='comment'>
+    <view class='text-comment' wx:if='{{item.type == "text"}}'>{{item.content}}</view>
+    <view class='audio-comment' wx:if='{{item.type == "audio"}}'>
+      <image class='play-audio' data-index='{{index}}' src='/images/play.png' bindtap='playAudio'></image>
+    </view>
+  </view> 
+</view>

@@ -1,0 +1,25 @@
+<view wx:if="{{!userInfo}}">
+  <view class="unlogin-card">
+    <view class="unlogin-head"></view>
+    <view class="unlogin-info">
+      <view class="unlogin-text">未登录</view>
+      <view class="unlogin-tips">点击微信即可侃侃电影</view>
+    </view>
+  </view>
+   <button open-type="getUserInfo"  bindgetuserinfo="onGetUserInfo" class="unlogin-btn" style="background-image: url({{avatarUrl}})"
+    >微信登录</button>
+</view>
+
+ <scroll-view scroll-y scroll-with-animation enable-back-to-top wx:else> 
+  <view wx:if='{{movieList}}'>
+    <navigator class='movie-list' wx:for='{{movieList}}' wx:key="id" url='../movie-detail/movie-detail?id={{item.id}}'>
+        <view class='movie-card'>
+          <image class='movie-img' src='{{item.image}}'></image>
+          <view class='movie-tips'>
+            <view class='hot-movie-title'>{{item.title}}</view>
+            <view class='movie-type'>类型：{{item.category}}</view>
+          </view>
+        </view>
+      </navigator>
+  </view>
+ </scroll-view> 

@@ -1,0 +1,28 @@
+<view class='movie-card'>
+  <image class='movie-img' src='{{movieDetail.image}}'></image>
+</view>
+
+<view class='text-card'>
+    <view class='text-tips'>
+      <view class='movie-title'>{{movieDetail.title}}</view>
+      <view class='info'>
+        <image class='image' src='{{userInfo.avatarUrl}}'></image>
+        <view class='title'>{{userInfo.nickName}}的影评</view>
+      </view>
+       <view class='movie-comment' wx:if='{{commentInfo.type == "text"}}'>{{commentInfo.content}}</view>
+       <view class='audio-comment' wx:if='{{commentInfo.type == "audio"}}'>
+        <image class='play-audio' src='/images/play.png' bindtap='playAudio'></image>
+      </view>
+    </view>
+</view>
+
+<view class='edit'>
+  <view class='edit-comment' bindtap='back'>
+     <image class='comment-img' src='/images/back.png'></image> 
+    <view class='comment-text'>重新编辑</view>
+  </view>
+  <view class='post-comment' bindtap='submit'>
+    <image class='comment-img' src='/images/post.png'></image>
+    <view class='comment-text'>发布影评</view>
+  </view>
+</view>
