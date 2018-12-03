@@ -19,9 +19,13 @@
      <view class='comment-text' wx:if='{{!star}}'>收藏影评</view>
      <view class='comment-text' wx:if='{{star}}'>已收藏</view>
   </view>
-  <view class='write-comment' bindtap='addComment'>
+  <view class='write-comment' bindtap='addComment' wx:if='{{!hasStar}}'>
     <image class='comment-img' src='/images/write.png'></image>
-    <view class='comment-text'>写影评</view>
+    <view class='comment-text'  >写影评</view>
   </view>
+  <view class='write-comment' bindtap='refresh' wx:if='{{hasStar}}'>
+    <image class='comment-img' src='/images/check.png'></image>
+    <view class='comment-text' >查看发布</view>
+ </view>
 </view>
   </view>

@@ -15,7 +15,8 @@ Page({
     commentType: null,  //评论的类型
     commentValue: null, //评论的文字内容
     isRecord: false,  //录音状态字
-    src: '' //音频评论链接
+    // src: '', //音频评论链接,
+    hasStar: null
   },
 
   /**

@@ -10,7 +10,8 @@ Page({
   data: {
     fromWho: null,
     movieDetail: null,
-    star: app.globalData.star
+    star: app.globalData.star,
+    hasStar: null
   },
 
   /**
@@ -23,6 +24,7 @@ Page({
       star: app.globalData.star
     })
     this.getMovieInfo()
+    this.isStar()
     console.log(this.data.fromWho)
   },
 
@@ -43,6 +45,38 @@ Page({
           console.error('[云函数] [movieInfo] 调用失败', err)
         }
       })
+  },
+
+  //检查用户是否收藏过这个电影
+  isStar() {
+    wx.cloud.callFunction({
+      name: 'getMyMovieStar',
+      data: {
+        movieId: Number(this.data.fromWho.movieId),
+        user: app.globalData.openid
+      },
+      success: res => {
+        console.log("---")
+        let result = res.result.data || null
+        console.log(result)
+        if (!result.length) {
+          this.setData({
+            hasStar: null
+          })
+        } else {
+          this.setData({
+            hasStar: result
+          }) 
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [movieInfo] 调用失败', err)
+      }
+    })
+  },
+
+  refresh() {
+
   },
 
   star() {  
@@ -165,6 +199,7 @@ Page({
    */
   onPullDownRefresh: function () {
     this.getMovieInfo()
+    this.isStar()
     wx.stopPullDownRefresh()
   },
 
