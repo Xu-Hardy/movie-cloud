@@ -7,7 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    stars: null
+    stars: null,
+    tips: "我收藏的影评",
+    status: "收藏",
+    release: null
   },
 
   /**
@@ -17,6 +20,7 @@ Page({
     console.log(app.globalData.openid)
     // console.log(options)
     this.getStarList()
+    this.getMyComment()
   },
 
   onGetOpenid() {
@@ -42,13 +46,35 @@ Page({
         user: app.globalData.openid
       },
       success: res => {
-        console.log(res)
+        console.log("收藏")
+        console.log(res.result.data)
         this.setData({
           stars: res.result.data
         })
       },
       fail: err => {
         console.error('[云函数] [getStar] 调用失败', err)
+      }
+    })
+  },
+
+
+  //获取自己发布的影评
+  getMyComment() {
+    wx.cloud.callFunction({
+      name: 'getMyComment',
+      data: {
+        user: app.globalData.openid
+      },
+      success: res => {
+        console.log('sss')
+        console.log(res.result.data)
+        this.setData({
+          release: res.result.data
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [getMyComment] 调用失败', err)
       }
     })
   },
@@ -71,6 +97,38 @@ Page({
       app.globalData.userInfo = e.detail.userInfo
       console.log(app.globalData)
     }
+  },
+
+  //切换收藏和编辑的页面
+  switch() {
+    wx.showActionSheet({
+      itemList: ['我收藏的影评','我发布的影评'],
+      success: res => {
+        let index = res.tapIndex
+        console.log(index)
+        if (index === 0) {
+          wx.showToast({
+            title: '收藏',
+          }) 
+          this.setData({
+            tips:"我收藏的影评",
+            status: "收藏"
+          })
+        } else {
+          wx.showToast({
+            title: '发布',
+          })
+          this.setData({
+            tips:"我发布的影评",
+            status: "发布"
+          })
+        }
+        
+      },
+      fail: err =>  {
+        console.log(err)
+      }
+    })
   },
 
   /**
