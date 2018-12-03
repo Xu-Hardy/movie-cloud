@@ -11,6 +11,7 @@ Page({
     fromWho: null, //影评来自谁
     movieDetail: null, //电影的图片和title
     star: app.globalData.star, //收藏状态标志位
+    comment: null
   },
 
   /**
@@ -25,6 +26,7 @@ Page({
     })
     this.getMovieInfo()
     this.isStar()
+    this.isComment()
     console.log(this.data.fromWho)
   },
 
@@ -45,6 +47,34 @@ Page({
           console.error('[云函数] [movieInfo] 调用失败', err)
         }
       })
+  },
+
+  isComment() {
+    wx.cloud.callFunction({
+      name: 'getMyMovieComment',
+      data: {
+        movieId: Number(this.data.fromWho.movieId),
+        user: app.globalData.openid
+      },
+      success: res => {
+        console.log("---")
+        let result = res.result.data || null
+        console.log(result)
+        //如果没有收藏star: null，展示前端
+        if (!result.length) {
+          this.setData({
+            comment: null
+          })
+        } else {
+          this.setData({
+            comment: result[0]
+          })
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [getMyMovieComment] 调用失败', err)
+      }
+    })
   },
 
   //检查用户是否收藏过这个电影
@@ -84,7 +114,7 @@ Page({
 
     // })
     wx.showToast({
-      title: 'sd',
+      title: '',
     })
   },
 
