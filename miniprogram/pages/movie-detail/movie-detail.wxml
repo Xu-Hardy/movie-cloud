@@ -15,9 +15,9 @@
       </navigator>
       <view class='add-comment'>
         <image class='comment-img' src='/images/add-comment.png'></image>
-        <!-- <view class='comment-text' wx:if='{{!comment}}' bindtap='addComment'>添加评论</view> -->
-        <!-- <view class='comment-text' wx:if='{{comment}}'>已经评论</view> -->
-        <view class='comment-text' bindtap='addComment'>已经评论</view>
+        <view class='comment-text' wx:if='{{!comment}}' bindtap='addComment'>添加评论</view>
+        <view class='comment-text' wx:if='{{comment}}'>已经评论</view>
+        <!-- <view class='comment-text' bindtap='addComment'>已经评论</view> -->
       </view>
     </view>
   </view>
