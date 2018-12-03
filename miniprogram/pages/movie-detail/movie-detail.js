@@ -1,3 +1,5 @@
+const app = getApp()
+
 let commentType
 
 Page({
@@ -19,7 +21,7 @@ Page({
       movieId: Number(options.id) 
     })
     this.getMovieDetail(this.data.movieId) //获取电影详情
-  
+    this.isComment()
     console.log("movie detail: 电影详情加载完毕！")
   },
 
@@ -68,6 +70,37 @@ Page({
       },
       fail(err) {
         console.log(err.errMsg)
+      }
+    })
+  },
+
+  //检查用户对电影是否评论过
+  isComment() {
+    wx.cloud.callFunction({
+      name: 'getMyMovieComment',
+      data: {
+        movieId: this.data.movieId,
+        user: app.globalData.openid
+      },
+      success: res => {
+        console.log("---")
+        let result = res.result.data || null
+        console.log(result)
+        //如果没有收藏star: null，展示前端
+        if (!result.length) {
+          this.setData({
+            comment: null
+          })
+        } else {
+          this.setData({
+            comment: result[0]
+          })
+          console.log("!!!")
+          console.log(result[0])
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [getMyMovieComment] 调用失败', err)
       }
     })
   },

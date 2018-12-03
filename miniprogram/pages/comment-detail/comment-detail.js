@@ -49,6 +49,7 @@ Page({
       })
   },
 
+  //检查用户对电影是否评论过
   isComment() {
     wx.cloud.callFunction({
       name: 'getMyMovieComment',

@@ -13,9 +13,10 @@
         <image class='comment-img' src='/images/view.png'></image>
         <view class='comment-text'>查看影评</view>
       </navigator>
-      <view class='add-comment' bindtap='addComment'>
+      <view class='add-comment'>
         <image class='comment-img' src='/images/add-comment.png'></image>
-        <view class='comment-text'>添加评论</view>
+        <view class='comment-text' wx:if='{{!comment}}' bindtap='addComment'>添加评论</view>
+        <view class='comment-text' wx:if='{{comment}}'>已经评论</view>
       </view>
     </view>
   </view>
