@@ -3,7 +3,7 @@
     <view class='unstar-text'>还有没有人评论呦！</view>
 </view>
 
-<view wx:if='{{comments}}' class='has-comment'  wx:for='{{comments}}'>
+<navigator wx:if='{{comments}}' class='has-comment'  wx:for='{{comments}}' url='../comment-detail/comment-detail?avatar={{item.avatar}}&content={{item.content}}&movieId={{item.movieId}}&type={{item.type}}&username={{item.username}}'>
    <view class='info'>
     <image class='image' src='{{item.avatar}}'></image>
     <view class='title'>{{item.username}}的影评</view>
@@ -14,4 +14,4 @@
       <image class='play-audio' data-index='{{index}}' src='/images/play.png' bindtap='playAudio'></image>
     </view>
   </view> 
-</view>
+</navigator> 

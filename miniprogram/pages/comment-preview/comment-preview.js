@@ -89,14 +89,14 @@ Page({
     // console.log(user)
 
     if (content) {
-      db.collection("comment").add({
+      wx.cloud.callFunction({
+        name: 'addComment',
         data: {
           avatar: avatarUrl,
           username: nickName,
           content: content,
           type: type,
           user: user,
-          movieId: Number(id)
         },
         success: res => {
           console.log("comment edit: 影评发布成功!")
@@ -108,11 +108,37 @@ Page({
           })
         },
         fail: err => {
-          wx.showToast({
+            wx.showToast({
             title: '影评发布失败！',
           })
+          console.error('[云函数] [movieInfo] 调用失败', err)
         }
       })
+      // db.collection("comment").add({
+      //   data: {
+      //     avatar: avatarUrl,
+      //     username: nickName,
+      //     content: content,
+      //     type: type,
+      //     user: user,
+      //     movieId: Number(id)
+      //   },
+      //   success: res => {
+      //     console.log("comment edit: 影评发布成功!")
+      //     wx.showToast({
+      //       title: ' 影评发布成功!',
+      //     })
+      //     wx.navigateTo({
+      //       url: `../comment-list/comment-list?id=${Number(id)}`,
+      //     })
+      //   },
+      //   fail: err => {
+      //     wx.showToast({
+      //       title: '影评发布失败！',
+      //     })
+      //   }
+      // })
+
     } else {
       wx.showToast({
         title: '评论不能为空呀!',
