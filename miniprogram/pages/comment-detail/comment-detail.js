@@ -8,10 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fromWho: null,
-    movieDetail: null,
-    star: app.globalData.star,
-    hasStar: null
+    fromWho: null, //影评来自谁
+    movieDetail: null, //电影的图片和title
+    star: app.globalData.star, //收藏状态标志位
   },
 
   /**
@@ -25,7 +24,7 @@ Page({
       star: app.globalData.star
     })
     this.getMovieInfo()
-    // this.isStar()
+    this.isStar()
     console.log(this.data.fromWho)
   },
 
@@ -40,7 +39,6 @@ Page({
           this.setData({
             movieDetail: res.result.data[0]
           })
-          console.log("11")
           console.log(res.result.data[0])
         },
         fail: err => {
@@ -61,20 +59,15 @@ Page({
         console.log("---")
         let result = res.result.data || null
         console.log(result)
+        //如果没有收藏star: null，展示前端
         if (!result.length) {
           this.setData({
-            hasStar: null
-          })
-          wx.showToast({
-            title: '请下拉刷新',
+            star: null
           })
         } else {
           this.setData({
-            hasStar: result[0]
+            star: result[0]
           }) 
-          wx.showToast({
-            title: '请下拉刷新',
-          })
         }
       },
       fail: err => {
@@ -90,12 +83,16 @@ Page({
     // this.setData({
 
     // })
+    wx.showToast({
+      title: 'sd',
+    })
   },
 
   star() {  
     //收藏影评按钮
       //star是收藏标志位，如果star是false，是待收藏状态，
       //star是true是已经收藏，再次点击取消收藏
+      this.isStar()
       let star = this.data.star
       let user = app.globalData.openid
       let { username, avatar, content, type } = this.data.fromWho
@@ -105,8 +102,8 @@ Page({
 
       this.setData({
         star: !star
-      }),
-      app.globalData.star = this.data.star
+      })
+      // app.globalData.star = this.data.star
 
       if (!star) {
         wx.cloud.callFunction({
@@ -123,6 +120,9 @@ Page({
           },
           success: res => {
             console.log('提交成功！')
+            wx.showToast({
+              title: '收藏成功！',
+            })
             console.log(res)
           },
           fail: err => {
@@ -138,6 +138,9 @@ Page({
             user,
           },
           success: res => {
+            wx.showToast({
+              title: '取消收藏！',
+            })
             console.log('提交成功！')
             console.log(res)
           },
