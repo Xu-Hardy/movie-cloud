@@ -116,15 +116,6 @@ Page({
       fromWho: this.data.comment
     })
     wx.hideLoading()
-    // let data = {
-    //   avatar: 
-    // }
-    // this.setData({
-
-    // })
-    // wx.showToast({
-    //   title: '',
-    // })
   },
 
   star() {  
