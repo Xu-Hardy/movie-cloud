@@ -14,10 +14,10 @@
 
 <view class='bar'>
   <view class='star-comment' bindtap='star'>
-     <image class='comment-img' src='/images/unstar.png' wx:if='{{!star}}'></image> 
-     <image class='comment-img' src='/images/star.png' wx:if='{{star}}'></image> 
-     <view class='comment-text' wx:if='{{!star}}'>收藏影评</view>
-     <view class='comment-text' wx:if='{{star}}'>已收藏</view>
+     <image class='comment-img' src='/images/unstar.png' wx:if='{{!hasStar}}'></image> 
+     <image class='comment-img' src='/images/star.png' wx:if='{{hasStar}}'></image> 
+     <view class='comment-text' wx:if='{{!hasStar}}'>收藏影评</view>
+     <view class='comment-text' wx:if='{{hasStar}}'>已收藏</view>
   </view>
   <view class='write-comment' bindtap='addComment' wx:if='{{!hasStar}}'>
     <image class='comment-img' src='/images/write.png'></image>

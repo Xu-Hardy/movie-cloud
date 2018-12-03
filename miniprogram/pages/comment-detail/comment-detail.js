@@ -19,6 +19,7 @@ Page({
    */
   onLoad: function (options) {
     console.log("影评详情")
+    console.log(options)
     this.setData({
       fromWho: options,
       star: app.globalData.star
@@ -65,7 +66,7 @@ Page({
           })
         } else {
           this.setData({
-            hasStar: result
+            hasStar: result[0]
           }) 
         }
       },
@@ -76,7 +77,12 @@ Page({
   },
 
   refresh() {
+    // let data = {
+    //   avatar: 
+    // }
+    // this.setData({
 
+    // })
   },
 
   star() {  
