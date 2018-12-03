@@ -204,7 +204,6 @@ Page({
         wx.navigateTo({
           url: `../comment-edit/comment-edit?id=${movieId}&commentType=${commentType}`,
         })
-        // console.log(typeof (movieId), typeof (commentType))
         console.log("movie detail: 正在跳转到影评编辑页面...")
       },
       fail(err) {

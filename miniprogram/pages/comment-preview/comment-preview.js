@@ -80,47 +80,101 @@ Page({
 
   //提交评论
   submit() {  
+
     let { avatarUrl, nickName } = this.data.userInfo
     let { content, id, type } = this.data.commentInfo
     let user = app.globalData.openid
 
+    let fileID
     // console.log(avatarUrl, nickName)
     // console.log(content, id, type)
     // console.log(user)
 
-    if (content) {
-      wx.cloud.callFunction({
-        name: 'addComment',
-        data: {
-          avatar: avatarUrl,
-          username: nickName,
-          content: content,
-          type: type,
-          user: user,
-          movieId: Number(id)
-        },
-        success: res => {
-          console.log("comment edit: 影评发布成功!")
-          wx.showToast({
-            title: ' 影评发布成功!',
-          })
-          wx.navigateTo({
-            url: `../comment-list/comment-list?id=${Number(id)}`,
-          })
-        },
-        fail: err => {
-            wx.showToast({
-            title: '影评发布失败！',
-          })
-          console.error('[云函数] [movieInfo] 调用失败', err)
-        }
-      })
-    } else {
+    if (type == "audio") {
       wx.showToast({
-        title: '评论不能为空呀!',
+        title: 'sdf',
       })
-    }
-  },
+      console.log(content)
+      wx.cloud.uploadFile({
+        cloudPath: 'music.aac', // 上传至云端的路径
+        filePath: content, // 小程序临时文件路径
+        success: res => {
+          // 返回文件 ID
+          console.log("ID")
+          console.log(res.fileID)
+          fileID = res.fileID
+          console.log(fileID)
+
+          if (content) {
+            wx.cloud.callFunction({
+              name: 'addComment',
+              data: {
+                avatar: avatarUrl,
+                username: nickName,
+                content: `${fileID}`,
+                type: type,
+                user: user,
+                movieId: Number(id)
+              },
+              success: res => {
+                console.log("comment edit: 影评发布成功!")
+                wx.showToast({
+                  title: ' 影评发布成功!',
+                })
+                wx.navigateTo({
+                  url: `../comment-list/comment-list?id=${Number(id)}`,
+                })
+              },
+              fail: err => {
+                wx.showToast({
+                  title: '影评发布失败！',
+                })
+                console.error('[云函数] [movieInfo] 调用失败', err)
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '评论不能为空呀!',
+            })
+          }
+        },
+        fail: console.error()
+      })
+    } else if (type == "text"){
+          if (content) {
+            wx.cloud.callFunction({
+              name: 'addComment',
+              data: {
+                avatar: avatarUrl,
+                username: nickName,
+                content: content,
+                type: type,
+                user: user,
+                movieId: Number(id)
+              },
+              success: res => {
+                console.log("comment edit: 影评发布成功!")
+                wx.showToast({
+                  title: ' 影评发布成功!',
+                })
+                wx.navigateTo({
+                  url: `../comment-list/comment-list?id=${Number(id)}`,
+                })
+              },
+              fail: err => {
+                wx.showToast({
+                  title: '影评发布失败！',
+                })
+                console.error('[云函数] [movieInfo] 调用失败', err)
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '评论不能为空呀!',
+            })
+          }
+      }
+    },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

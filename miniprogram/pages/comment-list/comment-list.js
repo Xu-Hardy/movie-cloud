@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    comments: null
+    comments: null,
   },
 
   /**
@@ -23,6 +23,7 @@ Page({
     console.log("comment list: 电影评论加载完成！")
   },
 
+  //获取电影评论
   getMovieCommet(id) {
     wx.cloud.callFunction({
       name: 'getMovieComment',
@@ -34,6 +35,8 @@ Page({
         this.setData({
           comments: res.result.data
         })
+        console.log("555555")
+        console.log(this.data.comments)
       },
       fail: err => {
         console.error('[云函数] [getMovieComment] 调用失败', err)
@@ -46,15 +49,26 @@ Page({
     wx.showToast({
       title: '开始!',
     })
+    console.log("开始")
     let index = event.currentTarget.dataset.index
-    innerAudioContext.src = this.data.comments[index].content;
+    let content = this.data.comments[index]
     console.log(this.data.comments[index])
-    console.log(this.data.comments[index].content)
-    console.log(index)
-    innerAudioContext.play()
-    wx.showToast({
-      title: '播放成功',
+    wx.cloud.downloadFile({
+      fileID: content.content, // 文件 ID
+      success: res => {
+        // 返回临时文件路径
+        console.log(res.tempFilePath)
+        innerAudioContext.src = res.tempFilePath;
+
+        innerAudioContext.play()
+        wx.showToast({
+          title: '播放成功',
+        })
+      },
+      fail: console.error
     })
+
+   
   },
 
   /**

@@ -62,12 +62,6 @@ Page({
     })
   },
 
-  // play() {
-  //   innerAudioContext.src = this.data.content;
-  //   console.log("audioo")
-  //   innerAudioContext.play()
-  // },
-
   //完成
   done() {
     let avatar = app.globalData.userInfo.avatarUrl
@@ -88,11 +82,8 @@ Page({
         title: '请填写评论！',
       })
     }
-    // console.log(app.globalData)
     console.log("comment edit: 开始预览影评...")
   },
-
-
 
   //录制音频函数，监听前端的音频输入
   record() {
@@ -128,7 +119,7 @@ Page({
       that.tip("录音完成！")
     });
 
-    innerAudioContext.src = this.data.content;
+    // innerAudioContext.src = this.data.content;
     // this.innerAudioContext.play()
     // innerAudioContext.onError(res => {
     //   that.tip("播放录音失败！")

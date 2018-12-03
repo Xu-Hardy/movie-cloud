@@ -1,4 +1,6 @@
 const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 
 Page({
 
@@ -25,6 +27,23 @@ Page({
     })
   },
 
+  del() {
+    wx.cloud.callFunction({
+      name: 'remove',
+      success: res => {
+        console.log(res)
+      },
+      fail: err => {
+        console.error('[云函数] [remove] 调用失败', err)
+      }
+    })
+    // db.collection('comment').where({
+    //   data: {
+    //     type: "audio"
+    //   }
+    // }).remove()
+    },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -34,6 +53,7 @@ Page({
     this.onGetOpenid()  //获取openid,便于后边获取评论
     this.getMoviePoster(id)  //下载电影信息
     console.log("Home:首页加载完毕。")
+    this.del()
   },
 
   //下载首页的海报
