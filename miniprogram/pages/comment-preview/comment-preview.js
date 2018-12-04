@@ -91,9 +91,9 @@ Page({
     // console.log(user)
 
     if (type == "audio") {
-      wx.showToast({
-        title: 'sdf',
-      })
+      // wx.showToast({
+      //   title: 'sdf',
+      // })
       console.log(content)
       wx.cloud.uploadFile({
         cloudPath: 'music.aac', // 上传至云端的路径

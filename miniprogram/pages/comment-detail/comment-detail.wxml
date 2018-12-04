@@ -8,7 +8,13 @@
         <image class='image' src='{{fromWho.avatar}}'></image>
         <view class='title'>{{fromWho.username}}的影评</view>
       </view>
-      <view class='comment'>{{fromWho.content}}</view>
+      <!-- <view class='comment'>{{fromWho.content}}</view> -->
+        <view class='comment'>
+          <view class='text-comment' wx:if='{{fromWho.type == "text"}}'>{{fromWho.content}}</view>
+          <view class='audio-comment' wx:if='{{fromWho.type == "audio"}}'>
+            <image class='play-audio'src='/images/play.png'></image>
+          </view>
+      </view>
     </view>
 
 
