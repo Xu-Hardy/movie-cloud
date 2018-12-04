@@ -80,7 +80,9 @@ Page({
 
   //提交评论
   submit() {  
-
+    wx.showLoading({
+      title: '正在提交！',
+    })
     let { avatarUrl, nickName } = this.data.userInfo
     let { content, id, type } = this.data.commentInfo
     let user = app.globalData.openid
@@ -89,6 +91,7 @@ Page({
     // console.log(avatarUrl, nickName)
     // console.log(content, id, type)
     // console.log(user)
+    console.log(typeof (content))
 
     if (type == "audio") {
       // wx.showToast({
@@ -96,7 +99,7 @@ Page({
       // })
       console.log(content)
       wx.cloud.uploadFile({
-        cloudPath: 'music.aac', // 上传至云端的路径
+        cloudPath: `test/${nickName}_${id}.aac`, // 上传至云端的路径
         filePath: content, // 小程序临时文件路径
         success: res => {
           // 返回文件 ID
@@ -117,6 +120,7 @@ Page({
                 movieId: Number(id)
               },
               success: res => {
+                wx.hideLoading()
                 console.log("comment edit: 影评发布成功!")
                 wx.showToast({
                   title: ' 影评发布成功!',
@@ -126,6 +130,7 @@ Page({
                 })
               },
               fail: err => {
+                wx.hideLoading()
                 wx.showToast({
                   title: '影评发布失败！',
                 })
@@ -153,6 +158,7 @@ Page({
                 movieId: Number(id)
               },
               success: res => {
+                wx.hideLoading()
                 console.log("comment edit: 影评发布成功!")
                 wx.showToast({
                   title: ' 影评发布成功!',
@@ -162,6 +168,7 @@ Page({
                 })
               },
               fail: err => {
+                wx.hideLoading()
                 wx.showToast({
                   title: '影评发布失败！',
                 })
